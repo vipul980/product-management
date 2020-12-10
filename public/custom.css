@@ -1,0 +1,99 @@
+
+
+
+/** navbar **/
+
+/* Navigation Bar **/
+ul {
+	
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+	overflow: hidden;
+	
+    background-color: #333;
+  }
+  
+  li {
+    float: left;
+    color: white;
+  }
+
+  li h1{
+      margin: 10px auto auto 9px;
+	  font-family: 'Roboto', sans-serif;
+	  font-weight: bold;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li a:hover:not(.active) {
+    background-color: #111;
+  }
+
+  .wishIcon {
+      display: flex;
+      cursor: pointer;
+      float: right;
+      margin: 8px 8px auto auto; 
+  }
+
+  .logOut {
+      display: inline;
+      float: right;
+  }
+
+input[type=submit] {
+    background-color: #56baed;
+    border: none;
+    color: white;
+    padding: 15px 80px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 13px;
+    -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+    box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+    margin: 5px 20px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  body {
+	  background-color: #d0e8f2;
+	
+  }
+
+  
+
+.card {
+    display: inline-flex;
+    margin: 28px;
+
+}  
+
+.productsHeading {
+  margin: 15px;
+  
+}
+
+#img-top {
+	height: 250px;
+}
+
+a:hover {
+  text-decoration: none;
+}
+

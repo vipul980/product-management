@@ -1,0 +1,75 @@
+<div>
+<ul>
+  <li>
+    {{#ifEquals mode "wishlist_page"}}
+    <a href="/products">
+      <h1>Product management</h1>
+    </a>
+    {{else}}
+    <h1>Product management</h1>
+    {{/ifEquals}}
+  </li>
+  <li class="wishIcon">
+    <a href="/products/favouriteProducts"><i class="fa fa-heart-o" style="font-size:50px;color:red"></i></a>
+  </li>
+  <li class="logOut">
+    <a href="/products/logout"><input type="submit" class="fourth" value="Log Out"></a>
+  </li>
+</ul>
+
+
+
+
+<div class="productsHeading">
+  {{#ifEquals mode "product_page"}}
+  <h1>All Products!</h1>
+  {{else }}
+  <h1>Saved Products!</h1>
+  {{/ifEquals}}
+</div>
+
+
+{{#ifEquals mode "product_page"}}
+{{#each data}}
+<div class="card" id="row-container" style="width: 20rem;">
+  <img class="card-img-top" id="img-top" src={{this.image}} alt="Card image cap">
+  <hr>
+  <div class="card-body">
+    <h5 class="card-title">{{this.productName}}</h5>
+    <p class="card-text">{{this.description}}</p>
+    <p>price: {{this.price}}</p>
+
+    <a href="/products/favouriteProducts/{{this._id}}" onclick="handleClick()" id="change-color" class="btn btn-primary">Add to wishlist</a>
+
+
+
+  </div>
+</div>
+{{/each}}
+{{else}}
+{{#each data}}
+<div class="card" id="row-container" style="width: 20rem;">
+  <img class="card-img-top" id="img-top" src={{this.image}} alt="Card image cap">
+  <hr>
+  <div class="card-body">
+    <h5 class="card-title">{{this.productName}}</h5>
+    <p class="card-text">{{this.description}}</p>
+    <p>price: {{this.price}}</p>
+
+    <a href="/products/removeFavProducts/{{this._id}}" class="btn btn-primary">Remove from list</a>
+
+
+
+
+  </div>
+</div>
+{{/each}}
+{{/ifEquals}}
+</div>
+<script>
+  function handleClick() {
+    document.getElementById("change-color").style.backgroundColor = "pink";
+    console.log("I got clicked");
+  }
+    ​​
+</script>
