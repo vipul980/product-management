@@ -7,18 +7,36 @@
     </div>
 
     <!-- Login -->
+    {{#ifEquals mode "login_page"}}
     <form action="/" method="POST">
       <input type="email" id="login" class="fadeIn second" name="email" placeholder="email id">
       <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
+      
       <input type="submit" class="fadeIn fourth" value="Log In">
+
     </form>
     <p>Don't have an account? register below!</p>
     <form action="/register">
       <input type="submit" class="fadeIn fourth" value="Register">
 
     </form>
+    {{else}}
+    <!-- Register Form -->
+    <form action="/register" method="POST">
+      <input type="email" id="login" class="fadeIn second" name="email" placeholder="email id">
+      <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
+      <label for="user-role">Select role:</label>
+      <select name="userRole">
+        <option value="user">User</option>
+        <option value="Admin">Admin</option>
+        
+      </select>
+      <br>
+      
+      <input type="submit" class="fadeIn fourth" value="Register">
+      
 
-
-
+    </form>
+    {{/ifEquals}}
   </div>
 </div>

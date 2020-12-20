@@ -10,9 +10,10 @@ module.exports = (req, res, next) => {
             const decoded_token = jwt.verify(token, JWT_SECRET);
             req.userData = {
                 email: decoded_token.email,
-                password: decoded_token.password
+                password: decoded_token.password,
+                userRole: decoded_token.userRole
             } 
-            console.log(req.userData.email);
+            console.log(req.userData);
             res.redirect("/products");
         }
 

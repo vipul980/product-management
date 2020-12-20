@@ -4,6 +4,7 @@ const handlebars = require("express-handlebars");
 const loginRoutes = require("./routes/login");
 const registerRoutes = require("./routes/register");
 const productsRoutes = require("./routes/products");
+const manageRoutes = require("./routes/manage");
 const cookieParser = require("cookie-parser");
 
 
@@ -30,5 +31,6 @@ app.use(express.static('public'));
 app.use("/", loginRoutes);
 app.use("/register", registerRoutes);
 app.use("/products", productsRoutes);
+app.use("/manage", manageRoutes);
 
 module.exports = app;

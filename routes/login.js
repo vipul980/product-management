@@ -21,38 +21,41 @@ const privateKey = process.env.SECRET_KEY;
 //Default user register and login route
 router.get("/",checkLogin, function(req, res){
     
-    res.render('main', {layouts: 'login', title: "User login"});
-    
+
        bcrypt.hash(process.env.DEFAULT_PASSWORD, saltRounds, function(err, hash){
         const defaultUser = new User({
             email: "123@gmail.com",
-            password: hash
+            password: hash,
+            userRole: "superAdmin"
         });
-    
-        User.findOne({email:"123@gmail.com"}, function(err, foundUser){
+            User.findOne({email:"123@gmail.com"}, function(err, foundUser){
     
             if(!foundUser){
             defaultUser.save(function(err){
+                let errors = defaultUser.validateSync();
                 
                 
                 if(err){
-                    res.send(err);
-                    console.log(err);
+                    
+                    console.log(err.errors['userRole'].message);
                 } else {
-                    console.log("defaultUser created");
+                    console.log("superAdmin created");
                 }
         
             });
-         } if(foundUser) {
+         } 
+          if(foundUser) {
             
                     bcrypt.compare(req.body.password, foundUser.password).then((match) => {
                         if(match) {
                             const payload = {
-                                email: foundUser.email,
-                                password: foundUser.password
+                                email: req.body.email,
+                                password: req.body.password,
+                                userRole: foundUser.userRole
                             }
+                            console.log("default payload", payload);
                             const token = jwt.sign(payload, privateKey);
-                            console.log("defaultUser token:", token);
+                        
                             res.cookie('qwertz', token);
                             res.redirect("/products");
                         }
@@ -61,9 +64,12 @@ router.get("/",checkLogin, function(req, res){
                     
                     }) 
                 }
-            })
+             })
             
-        })
+         })
+         res.render('main', {layouts: 'login', title: "User login", mode: "login_page"});
+
+
     });
 
 
@@ -79,6 +85,7 @@ router.post("/",checkLogin, async function(req, res){
     const user_password = req.body.password;
     console.log(user_email);
     console.log(user_password);
+    
 
     User.findOne({email: user_email}).then((foundUser) => {
         console.log(foundUser);
@@ -87,12 +94,13 @@ router.post("/",checkLogin, async function(req, res){
            bcrypt.compare(req.body.password, foundUser.password).then((match) => {
             if(match){
                 const payload = {
-                    email: foundUser.email,
-                    password: foundUser.password
+                    email: req.body.email,
+                    password: req.body.password,
+                    userRole: foundUser.userRole
                 };
-
+                console.log("payload", payload);
                 const token = jwt.sign(payload, privateKey);
-                console.log("token", token);
+                //console.log("token", token);
                 res.cookie('qwertz', token);
                 res.redirect("/products");
 

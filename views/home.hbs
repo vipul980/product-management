@@ -1,6 +1,7 @@
-<div>
+
 <ul>
   <li>
+    
     {{#ifEquals mode "wishlist_page"}}
     <a href="/products">
       <h1>Product management</h1>
@@ -15,6 +16,11 @@
   <li class="logOut">
     <a href="/products/logout"><input type="submit" class="fourth" value="Log Out"></a>
   </li>
+  {{#ifEquals mode "exclusive_product_page"}}
+  <li><a href="/manage/manageAll"><input type="submit" class="fourth" value="Manage users & Admins"></a></li>
+    
+
+  {{/ifEquals}}
 </ul>
 
 
@@ -23,8 +29,14 @@
 <div class="productsHeading">
   {{#ifEquals mode "product_page"}}
   <h1>All Products!</h1>
-  {{else }}
+  {{/ifEquals}}
+  
+  {{#ifEquals mode "exclusive_product_page"}}
+  <h1>Exclusive Products!</h1>
+    {{/ifEquals}}
+  {{#ifEquals mode "wishlist_page"}}
   <h1>Saved Products!</h1>
+   
   {{/ifEquals}}
 </div>
 
@@ -39,14 +51,15 @@
     <p class="card-text">{{this.description}}</p>
     <p>price: {{this.price}}</p>
 
-    <a href="/products/favouriteProducts/{{this._id}}" onclick="handleClick()" id="change-color" class="btn btn-primary">Add to wishlist</a>
+     <a href="/products/favouriteProducts/{{this._id}}" id="change-color" class="btn btn-primary">Add to wishlist</a>
 
 
 
   </div>
 </div>
 {{/each}}
-{{else}}
+{{/ifEquals}}
+{{#ifEquals mode "wishlist_page"}}
 {{#each data}}
 <div class="card" id="row-container" style="width: 20rem;">
   <img class="card-img-top" id="img-top" src={{this.image}} alt="Card image cap">
@@ -65,11 +78,25 @@
 </div>
 {{/each}}
 {{/ifEquals}}
+
+{{#ifEquals mode "exclusive_product_page"}}
+{{#each data}}
+<div class="card" id="row-container" style="width: 20rem;">
+  <img class="card-img-top" id="img-top" src={{this.image}} alt="Card image cap">
+  <hr>
+  <div class="card-body">
+    <h5 class="card-title">{{this.productName}}</h5>
+    <p class="card-text">{{this.description}}</p>
+    <p>price: {{this.price}}</p>
+
+     <a href="/products/favouriteProducts/{{this._id}}" id="change-color" class="btn btn-primary">Add to wishlist</a>
+
+
+
+  </div>
 </div>
-<script>
-  function handleClick() {
-    document.getElementById("change-color").style.backgroundColor = "pink";
-    console.log("I got clicked");
-  }
-    ​​
-</script>
+{{/each}}
+{{/ifEquals}}
+
+
+

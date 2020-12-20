@@ -7,7 +7,7 @@ const bcrypt = require("bcrypt");
 
 
 router.get("/", function(req, res){
-    res.render('register', {layouts: 'login', title: "User Register"});
+    res.render('main', {layouts: 'login', title: "User Register"});
 });
 
 //New user registeration section
@@ -18,7 +18,8 @@ router.post("/", async function(req, res){
 
         const newUsers = new User({
             email: req.body.email,
-            password: hash
+            password: hash,
+            userRole: req.body.userRole
         });
         console.log(newUsers);
     

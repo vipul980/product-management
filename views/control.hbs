@@ -1,0 +1,38 @@
+<ul>
+  <li>
+   <a href="/products">
+    <h1>Product management</h1>
+    </a>
+  </li>
+  <li class="wishIcon">
+    <a href="/products/favouriteProducts"><i class="fa fa-heart-o" style="font-size:50px;color:red"></i></a>
+  </li>
+  <li class="logOut">
+    <a href="/products/logout"><input type="submit" class="fourth" value="Log Out"></a>
+  </li>
+  
+</ul>
+
+
+
+<h1>Super Admin</h1>
+<P>Control Panel!</P>
+{{#each data}}
+<div class="card" id="row-container" style="width: 20rem;">
+  {{!-- <img class="card-img-top" id="img-top" src={{this.password}} alt="Card image cap"> --}}
+  <hr>
+  <div class="card-body">
+    <h5 class="card-title">userRole: {{this.userRole}}</h5>
+    <p class="card-text">email Id: {{this.email}}</p>
+    
+    <a href="/manage/manage_delete/{{this._id}}" class="btn btn-primary">Remove</a>
+
+    
+
+
+
+
+  </div>
+</div>
+{{/each}}
+
